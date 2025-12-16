@@ -1,0 +1,455 @@
+/* =====================
+   ESTILO GENERAL
+===================== */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* COLORES MARCA */
+:root {
+    --dark: #1a1a1a;
+    --gold: #c9a24d;
+    --light-gold: #f5e6c8;
+}
+
+/* =====================
+   NAVBAR
+===================== */
+.navbar {
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.navbar-brand {
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* =====================
+   BOTONES ANIMADOS
+===================== */
+.btn-dark {
+    background: linear-gradient(135deg, var(--dark), var(--gold));
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-dark:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(201,162,77,0.6);
+}
+
+.btn-dark:active {
+    transform: scale(0.95);
+}
+
+/* =====================
+   CARDS
+===================== */
+.card {
+    border: none;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+/* =====================
+   IMÁGENES
+===================== */
+.card-img-top {
+    border-radius: 15px 15px 0 0;
+}
+
+/* =====================
+   TÍTULOS
+===================== */
+h1, h2, h3, h4 {
+    font-weight: 700;
+}
+
+/* FADE IN AL CARGAR */
+.fade-in {
+    animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =====================
+   SIDEBAR DASHBOARD
+===================== */
+.sidebar {
+    min-height: 100vh;
+    background: linear-gradient(180deg, #1a1a1a, #3b2f1c);
+    color: #fff;
+}
+
+.sidebar .nav-link {
+    color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.sidebar .nav-link:hover {
+    background-color: rgba(201,162,77,0.2);
+    padding-left: 15px;
+    color: #f5e6c8;
+}
+
+/* =====================
+   CARDS DASHBOARD
+===================== */
+.card {
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* =====================
+   DIFERENCIAR ROLES
+===================== */
+.admin-only {
+    border-left: 5px solid var(--gold);
+}
+
+.badge-role {
+    background-color: var(--gold);
+    color: #000;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+/* ================================
+   ANIMACIONES GENERALES
+================================ */
+
+/* Fade-in */
+.fade-in {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================================
+   CARDS DE PROPIEDADES
+================================ */
+
+.card {
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.15);
+}
+
+.card-img-top {
+    height: 220px;
+    object-fit: cover;
+}
+
+/* ================================
+   BOTONES PREMIUM
+================================ */
+
+.btn-dark {
+    background: linear-gradient(135deg, #000000, #c9a14a);
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-dark:hover {
+    background: linear-gradient(135deg, #c9a14a, #000000);
+    transform: scale(1.03);
+}
+
+.btn-dark:active {
+    transform: scale(0.97);
+}
+
+/* ================================
+   NAVBAR
+================================ */
+
+.navbar {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #c9a14a;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* ================================
+   BADGES
+================================ */
+
+.badge {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+    border-radius: 10px;
+}
+
+/* ================================
+   ANIMACIÓN EQUIPO
+================================ */
+
+.team-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 16px;
+    transition: all 0.35s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.2);
+}
+
+.team-card img {
+    transition: transform 0.35s ease;
+}
+
+.team-card:hover img {
+    transform: scale(1.1);
+}
+
+/* Overlay elegante */
+.team-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.7),
+        rgba(0,0,0,0.1)
+    );
+    opacity: 0;
+    transition: opacity 0.35s ease;
+}
+
+.team-card:hover .team-overlay {
+    opacity: 1;
+}
+
+.team-info {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    color: #fff;
+}
+
+/* ===== ROLES ===== */
+
+.badge-admin {
+    background-color: #d4af37; /* dorado */
+    color: #000;
+    font-weight: bold;
+}
+
+.badge-client {
+    background-color: #0d6efd; /* azul */
+    color: #fff;
+    font-weight: bold;
+}
+
+.hover-card {
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,.15);
+}
+
+/* ===============================
+   DASHBOARD - NOVA HOUSE
+================================*/
+
+body {
+    background: #f7f7f7;
+}
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(90deg, #111111, #1c1c1c);
+}
+
+/* Títulos */
+.dashboard-title {
+    color: #111;
+}
+
+.dashboard-subtitle {
+    color: #777;
+}
+
+/* Cards estadísticas */
+.dashboard-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 30px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dashboard-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, #d4af37, #b8962e);
+}
+
+.dashboard-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+}
+
+.dashboard-card h2 {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #111;
+    margin-bottom: 5px;
+}
+
+.dashboard-card small {
+    color: #666;
+    letter-spacing: 0.5px;
+}
+
+/* Card total */
+.total-card {
+    background: linear-gradient(135deg, #111111, #2b2b2b);
+    color: #fff;
+}
+
+.total-card h2,
+.total-card small {
+    color: #d4af37;
+}
+
+/* Última propiedad */
+.last-property {
+    background: #fff;
+    border-left: 6px solid #d4af37;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* Mensaje inteligente */
+.dashboard-message {
+    font-style: italic;
+    color: #666;
+}
+
+/* Animación entrada */
+.fade-up {
+    animation: fadeUp 0.8s ease both;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* ===============================
+   MAPA - DETALLE PROPIEDAD
+================================ */
+
+.map-section {
+    margin-top: 40px;
+}
+
+.map-container {
+    width: 100%;
+    height: 350px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+    border: 2px solid #d4af37;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* ===============================
+   LOGIN - IMAGEN IZQUIERDA
+================================ */
+
+.login-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.login-left {
+    flex: 1;
+    background-image: url("img/login-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+/* Overlay oscuro elegante */
+.login-left::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+}

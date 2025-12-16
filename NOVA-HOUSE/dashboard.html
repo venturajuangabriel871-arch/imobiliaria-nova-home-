@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>NOVA-HOUSE | Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<!-- PROTECCIÓN ADMIN -->
+<script>
+const user = JSON.parse(localStorage.getItem("loggedUser"));
+if (!user || user.role !== "admin") {
+    window.location.href = "panel.html";
+}
+</script>
+
+<nav class="navbar navbar-dark bg-dark px-4">
+    <a class="navbar-brand" href="panel.html">← Panel</a>
+    <span class="navbar-text text-white">Dashboard Administrador</span>
+</nav>
+
+<div class="container my-5">
+
+    <!-- HEADER -->
+    <div class="mb-4">
+        <h2 class="fw-bold mb-1">Dashboard</h2>
+        <p class="text-muted mb-0">
+            Resumen general del sistema · NOVA-HOUSE
+        </p>
+    </div>
+
+    <!-- ESTADÍSTICAS -->
+    <div class="container my-5">
+
+    <!-- HEADER -->
+    <div class="mb-5 fade-up">
+        <h2 class="fw-bold dashboard-title">Dashboard</h2>
+        <p class="dashboard-subtitle">
+            Panel administrativo · NOVA-HOUSE
+        </p>
+    </div>
+
+    <!-- ESTADÍSTICAS -->
+    <div class="row g-4 fade-up">
+
+        <div class="col-md-3">
+            <div class="dashboard-card">
+                <h2 id="statCasa">0</h2>
+                <small>Casas registradas</small>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="dashboard-card">
+                <h2 id="statDepartamento">0</h2>
+                <small>Departamentos registrados</small>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="dashboard-card">
+                <h2 id="statTerreno">0</h2>
+                <small>Terrenos registrados</small>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="dashboard-card">
+                <h2 id="statLote">0</h2>
+                <small>Lotes registrados</small>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- TOTAL -->
+    <div class="row mt-4 fade-up">
+        <div class="col-md-3">
+            <div class="dashboard-card total-card">
+                <h2 id="statTotal">0</h2>
+                <small>Total de propiedades</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- ÚLTIMA PROPIEDAD -->
+    <div class="last-property p-4 mt-5 fade-up">
+        <h6 class="fw-bold mb-2">Última propiedad agregada</h6>
+        <div id="lastProperty" class="text-muted">—</div>
+    </div>
+
+</div>
+
+
+<!-- JS DASHBOARD -->
+<script>
+const properties = JSON.parse(localStorage.getItem("properties")) || [];
+
+// Normalizar tipo
+const normalize = t => t ? t.toLowerCase().trim() : "";
+
+// Contadores
+let casas = 0, departamentos = 0, terrenos = 0, lotes = 0;
+
+properties.forEach(p => {
+    const type = normalize(p.type);
+    if (type === "casa") casas++;
+    else if (type === "departamento") departamentos++;
+    else if (type === "terreno") terrenos++;
+    else if (type === "lote") lotes++;
+});
+
+// Animación contador
+function animate(id, end) {
+    const el = document.getElementById(id);
+    let start = 0;
+    const duration = 800;
+    const startTime = performance.now();
+
+    function update(time) {
+        const progress = Math.min((time - startTime) / duration, 1);
+        el.textContent = Math.floor(progress * end);
+        if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+}
+
+// Ejecutar animaciones
+animate("statCasa", casas);
+animate("statDepartamento", departamentos);
+animate("statTerreno", terrenos);
+animate("statLote", lotes);
+animate("statTotal", properties.length);
+
+// Última propiedad
+if (properties.length > 0) {
+    const last = properties[properties.length - 1];
+    document.getElementById("lastProperty").innerHTML = `
+        <strong>${last.title}</strong><br>
+        ${last.city} · ${last.type}<br>
+        <span style="color:#d4af37; font-weight:bold;">
+            $${Number(last.price).toLocaleString()}
+        </span>
+    `;
+}
+
+// Mensaje inteligente
+const msg = document.createElement("p");
+msg.className = "dashboard-message mt-4";
+
+if (properties.length === 0) {
+    msg.textContent = "Aún no hay propiedades registradas. Empieza agregando una.";
+} else if (properties.length < 5) {
+    msg.textContent = "Sistema en crecimiento. Considera agregar más propiedades.";
+} else {
+    msg.textContent = "Sistema activo con buena cantidad de propiedades registradas.";
+}
+
+document.querySelector(".container").appendChild(msg);
+</script>
+
+
+<p class="text-muted small mt-5 text-center">
+    🔒 Este panel es exclusivo para administradores del sistema.
+</p>
+
+</body>
+</html>
